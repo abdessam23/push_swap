@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operatons.c                                        :+:      :+:    :+:   */
+/*   instrection1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:26:27 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/16 18:02:49 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:57:47 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	sa(t_stack *a, int msg)
          ft_putstr_fd("sa\n", 1);
 }
 
-void	sa(t_stack *b, int msg)
+void	sb(t_stack *b, int msg)
 {
     ft_swap(b);
     if (msg)
@@ -49,9 +49,9 @@ void    ft_rotate(t_stack *stack)
     int tmp;
     int i;
 
-    i = 0;
     if (stack->size < 2)
 		return ;
+    i = 0;
     while (i < stack->size - 1)
     {
         tmp = stack->stk[i + stack->top];

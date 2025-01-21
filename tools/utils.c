@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:25:58 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/15 16:06:36 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/21 18:35:46 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    ft_error(char   *str)
     ft_putstr_fd(str, 1);
     exit (1);
 }
-void    ft_free(char    **str)
+void    ft_free(char **str)
 {
     int i;
     i = 0;
@@ -29,30 +29,47 @@ void    ft_free(char    **str)
     free(str); 
 }
 
-int is_sorted(t_stack **stack)
+int is_sorted(t_stack stack_a)
 {
-    t_stack  *head;
-    head = *stack;
-    while(head && head->next)
+    int i;
+    
+    i = stack_a.top;
+    while(i < stack_a.c - 1)
     {
-        if(head->data > head->next->data)
+        if(stack_a.stk[i] > stack_a.stk[i + 1])
             return (0);
-        head = head->next;
+        i++;
     }
     return (1);
 }
 
-void ft_free_stack(t_stack   **stack)
+void ft_free_stack(t_stack   *stack_a, t_stack *stack_b)
 {
-    t_stack  *head;
-    t_stack  *tmp;
+    free(stack_a->stk);
+    free(stack_b->stk);
+    free(stack_a->sort);
+}
+long	ft_atol(char *str)
+{
+	int	sign;
+	long long	r;
 
-    head = *stack;
-    while (head)
-    {
-        tmp = head;
-        head = head->next;
-        free(tmp);
-    }
-    free(stack);
+	r = 0;
+	sign = 1;
+	while ((*str >= 9 && *str <= 13) || *str == ' ')
+		str++;
+	if (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		r *= 10;
+		r += *str - '0';
+		str++;
+	}
+	r *= sign;
+	return ((long)r);
 }

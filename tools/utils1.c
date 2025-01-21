@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linklist.c                                         :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:26:16 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/15 15:54:10 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:18:09 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,66 @@
 
 int ft_sqrt(int n)
 {
-    int i;
+    if (n < 0) return -1;
+    if (n == 0 || n == 1) return n;
 
-    i = 1;
-    while (i <= n)
+    int low = 1, high = n, mid;
+    
+    while (low <= high)
     {
-        if (i * i == n)
-            return (i);
+        mid = (low + high) / 2;
         
-        if (i * i > n)
-            return (i - 1);
-        i++;
+        if (mid * mid == n)
+            return mid;
+        else if (mid * mid < n)
+            low = mid + 1;
+        else
+            high = mid - 1;
     }
-    return (0); 
+    return high;
 }
 
 t_stack   fill_stack_b(t_stack a)
 {
     t_stack b;
-
-    b.stk = malloc(sizeof(int) * a.c);
+    
+    b.stk = malloc(sizeof(int) * a.size);
     if(!b.stk)
     {
-        ft_free_stack(a.stk);
-        ft_free_stack(a.sort);
+        free(a.stk);
+        free(a.sort);
         ft_error("Error\n");
     }
-    b.top = 0;
-    b.size = a.size;
+    b.top = a.size;
+    b.size = 0;
     b.c = a.size;
     return (b);
 }
 
-int find_pos(int n, t_stack *a)
+int find_pos(int n, t_stack *stack)
 {
     int i;
 
-    i = a->top;
-    while(a->stk[i])
+    i = stack->top;
+    while(i < stack->c)
     {
-        if(a->stk[i] = n)
-        {
+        if(stack->stk[i] == n)
             return (i);
-        }
         i++;
     }
     return (-1);
 }
-int find_level(int n,t_stack *sorted, int len)
+
+int find_level(int n,int *sorted, int len)
+{
+    int i;
+
+    i = 0;
+    while (i <= len)
+    {
+        if (n == sorted[i])
+            return(i + 1);
+        i++;
+    }
+    return (-1);
+}

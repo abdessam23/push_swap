@@ -1,26 +1,28 @@
 
 #include "push_swap.h"
 
-int	*ft_cpystk(t_stack a)
+int	*ft_cpystk(t_stack *a)
 {
 	int	*sorted_ar;
 
-	sorted_ar = malloc*(sizeof(int) *(a->size));
+	sorted_ar = malloc(sizeof(int) *(a->size));
 	if (!sorted_ar)
 	{
-		free(sorted_ar);
+		free(a->stk);
 		ft_error("Error\n");
 	}
-	ft_memcpy(sorted_ar,a->stk, sizeof(int)* a->stk);
+	ft_memcpy(sorted_ar,a->stk, sizeof(int)* a->c);
 	return (sorted_ar);
 }
-int	*ft_sorted(t_stack a)
+void	ft_sorted(t_stack *a)
 {
 	int	*sorted_ar;
 	int	i;
+	int	j;
 	int	tmp;
 
 	i = 0;
+	sorted_ar = ft_cpystk(a);
 	while (i < a->size - 1)
 	{
 		j = 0;
@@ -34,10 +36,9 @@ int	*ft_sorted(t_stack a)
 			}
 			j++;
 		}
-		
 		i++;
 	}
-	return (sorted_ar);
+	a->sort = sorted_ar;
 }
 
 static int	count_args(char **s)
@@ -49,50 +50,43 @@ static int	count_args(char **s)
 		i++;
 	return (i);
 }
-void	fill_array(t_stack a, char **args)
+static void	fill_array(t_stack *a, char **tab, int argc)
 {
 	int	i;
+	int j;
     
     i = 0;
-	a->stk = malloc(sizeof(int) * (count_args(args)));
+	j = 0;
+	a->stk = malloc(sizeof(int) * (count_args(tab)));
 	if (!a->stk)
 	{
-		
-		while (args[i])
-			free(args[i++]);
-		free(args);
-		error("Error\n");
+		free(a->stk);
+		ft_error("Error\n");
 	}
 	i = 0;
-	while (args[i])
+	if (argc > 2)
+		i = 1;
+	while (tab[i])
 	{
-		a->stk[i] = ft_atoi(args[i]);
-		free(args[i]);
+		a->stk[j++] = ft_atoi(tab[i]);
 		i++;
 	}
 	a->top = 0;
-	a->size = i;
-	a->c = i;
-	free(args);
+	a->size = j;
+	a->c = j;
 	ft_sorted(a);
 }
 t_stack  fill_stack_a(int argc,char  **argv)
 {
-    int i;
     char **tab;
     t_stack a;
 
-    i = 0;
     if (argc == 2)
         tab = ft_split(argv[1], ' ');
     else
-    {
-        i = 1;
-        tab = argv;
-    }
-    
-    fill_array(a);
-    if (argc == 2)
-        ft_free(tab);
-	return (a)
+		tab = argv;
+    fill_array(&a, tab, argc);
+	if (argc == 2)
+		ft_free(tab);
+	return (a);
 }

@@ -11,21 +11,25 @@ void    ft_push(t_stack *to, t_stack *from)
     from->size--;
 }
 
-void    pa(t_stack *a, t_stack *b)
+void    pa(t_stack *a, t_stack *b, int msg)
 {
     ft_push(a,b);
-    ft_putstr_fd("pa\n", 1);
+    if(msg)
+        ft_putstr_fd("pa\n", 1);
 }
-void    pb(t_stack *a, t_stack *b)
+void    pb(t_stack *a, t_stack *b, int msg)
 {
     ft_push(b,a);
-    ft_putstr_fd("pb\n", 1);
+    if(msg)
+        ft_putstr_fd("pb\n", 1);
 }
 
 void    ft_rev_rotate(t_stack *stack)
 {
     int tmp;
-
+    int i;
+    if(stack->size < 2)
+        return ;
     i = stack->top + stack->size - 1;
     while (i > stack->top)
     {

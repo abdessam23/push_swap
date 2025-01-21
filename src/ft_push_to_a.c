@@ -1,44 +1,44 @@
 #include "push_swap.h"
-static void mid_top_to_a(t_stack *a, t_stack *b, int  num,int level)
+static void mid_top_to_a(t_stack *a, t_stack *b, int  num,int *level)
 {
-    level--;
-    while (b->stk[top] != num)
+    (*level)--;
+    while (b->stk[b->top] != num)
         rb(b, 1);
-    pa(a, b);
+    pa(a, b, 1);
 }
 
-static void mid_bot_to_a(t_stack *a, t_stack *b, int  num,int level)
+static void mid_bot_to_a(t_stack *a, t_stack *b, int  num,int *level)
 {
-    level--;
-    while (b->stk[top] != num)
+    (*level)--;
+    while (b->stk[b->top] != num)
         rrb(b, 1);
-    pa(a, b);
+    pa(a, b, 1);
 }
 
 void    ft_push_to_a(t_stack *a, t_stack *b)
 {
-    int top;
+    int up;
     int len;
     int level;
 
-    level = b->c;
-    while (b->top > 0)
+    level = a->c;
+    while (b->size > 0)
     {
-        top = b->top;
+        up = b->top;
         len = b->top + b->size - 1;
-        while (top <= len)
+        while (up <= len)
         {
-           if(find_level(b->stk[top], a->sort, a->c) == level)
+           if(find_level(b->stk[up], a->sort, a->c) == level)
             {
-                mid_top_to_a(a, b, b->stack[top], &level);
+                mid_top_to_a(a, b, b->stk[up], &level);
                 break;
             }
             if(find_level(b->stk[len], a->sort, a->c) == level)
             {
-                mid_bot_to_a(a, b, b->stack[len], &level);
+                mid_bot_to_a(a, b, b->stk[len], &level);
                 break;
             }
-            top++;
+            up++;
             len--;
         }
     }

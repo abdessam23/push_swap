@@ -6,11 +6,12 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 10:21:19 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/15 16:58:22 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/21 18:29:39 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 static int check_duplicate(char **str, int n, int i)
 {
@@ -44,7 +45,7 @@ void    ft_check_arg(int argc, char **argv)
 {
     int i;
     char **tab;
-    int n;
+    long long n;
 
     i = 0;
     if (argc == 2)
@@ -56,16 +57,22 @@ void    ft_check_arg(int argc, char **argv)
     }
     while (tab[i])
     {
-        n = ft_atoi(tab[i]);
-        if (n < INT_MIN || n > INT_MAX)
-            ft_error("Error");
+        n = ft_atol(tab[i]);
+        if (n < -2147483648 || n > 2147483647)
+        {
+            ft_free(tab);
+            ft_error("Error\n");
+        }
         if(!is_number(tab[i]))
-            ft_error("Error : enter only numbers\n");
+        {
+            ft_free(tab);
+            ft_error("Error\n");
+        }
         if(check_duplicate(tab, n, i))
-            ft_error("Error : duplicate numbers\n");
+            ft_error("Error\n");
         i++;
     }
     if (argc == 2)
-       ft_free(tab);
+        ft_free(tab);
 }
 
