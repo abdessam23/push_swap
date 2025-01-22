@@ -6,30 +6,36 @@
 #    By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/14 13:57:02 by abhimi            #+#    #+#              #
-#    Updated: 2025/01/14 17:36:02 by abhimi           ###   ########.fr        #
+#    Updated: 2025/01/22 14:42:46 by abhimi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
+BONUS = checker
 MAKE = make
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror -Iincludes
 RM =rm -rf 
 SRC=$(wildcard src/*.c tools/*.c)
+BSRC= bonus/*.c
 OBG=$(SRC:.c=.o)
+BOBG=$(BSRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBG)
 	$(MAKE) -C ./libft
-	$(CC) $(CFLAGS) $(OBG) ./libft/libft.a -o $(NAME) -g
+	$(CC) $(CFLAGS) $(OBG) ./libft/libft.a -o $(NAME)
 
+$(BONUS): $(BOBG) $(OBG)
+	$(MAKE) -C ./libft
+	$(CC) $(CFLAGS) $(BOBG) ./libft/libft.a -o $(BONUS)
 clean:
 	$(MAKE) -C ./libft fclean
-	$(RM) $(OBG)
+	$(RM) $(OBG) $(BOBG)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS)
 
 re: fclean all
 
