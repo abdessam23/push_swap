@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/22 16:47:39 by abhimi            #+#    #+#             */
+/*   Updated: 2025/01/22 18:58:08 by abhimi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -11,9 +22,10 @@ int	*ft_cpystk(t_stack *a)
 		free(a->stk);
 		ft_error("Error\n");
 	}
-	ft_memcpy(sorted_ar,a->stk, sizeof(int)* a->c);
+	ft_memcpy(sorted_ar, a->stk, sizeof(int) * a->c);
 	return (sorted_ar);
 }
+
 void	ft_sorted(t_stack *a)
 {
 	int	*sorted_ar;
@@ -28,11 +40,11 @@ void	ft_sorted(t_stack *a)
 		j = 0;
 		while (j < a->size - i - 1)
 		{
-			if(sorted_ar[j] > sorted_ar[j + 1])
+			if (sorted_ar[j] > sorted_ar[j + 1])
 			{
-			tmp = sorted_ar[j];
-			sorted_ar[j] = sorted_ar[j + 1];
-			sorted_ar[j + 1] = tmp;
+				tmp = sorted_ar[j];
+				sorted_ar[j] = sorted_ar[j + 1];
+				sorted_ar[j + 1] = tmp;
 			}
 			j++;
 		}
@@ -50,12 +62,13 @@ static int	count_args(char **s)
 		i++;
 	return (i);
 }
+
 static void	fill_array(t_stack *a, char **tab, int argc)
 {
 	int	i;
-	int j;
-    
-    i = 0;
+	int	j;
+
+	i = 0;
 	j = 0;
 	a->stk = malloc(sizeof(int) * (count_args(tab)));
 	if (!a->stk)
@@ -76,16 +89,17 @@ static void	fill_array(t_stack *a, char **tab, int argc)
 	a->c = j;
 	ft_sorted(a);
 }
-t_stack  fill_stack_a(int argc,char  **argv)
-{
-    char **tab;
-    t_stack a;
 
-    if (argc == 2)
-        tab = ft_split(argv[1], ' ');
-    else
+t_stack	fill_stack_a(int argc, char **argv)
+{
+	char	**tab;
+	t_stack	a;
+
+	if (argc == 2)
+		tab = ft_split(argv[1], ' ');
+	else
 		tab = argv;
-    fill_array(&a, tab, argc);
+	fill_array(&a, tab, argc);
 	if (argc == 2)
 		ft_free(tab);
 	return (a);
