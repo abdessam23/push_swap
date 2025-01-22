@@ -6,7 +6,7 @@
 #    By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/14 13:57:02 by abhimi            #+#    #+#              #
-#    Updated: 2025/01/22 14:42:46 by abhimi           ###   ########.fr        #
+#    Updated: 2025/01/22 15:40:32 by abhimi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iincludes
 RM =rm -rf 
 SRC=$(wildcard src/*.c tools/*.c)
-BSRC= bonus/*.c
+BSRC= $(wildcard bonus/*.c tools/*.c)
 OBG=$(SRC:.c=.o)
 BOBG=$(BSRC:.c=.o)
 
@@ -27,9 +27,11 @@ $(NAME): $(OBG)
 	$(MAKE) -C ./libft
 	$(CC) $(CFLAGS) $(OBG) ./libft/libft.a -o $(NAME)
 
-$(BONUS): $(BOBG) $(OBG)
+$(BONUS): $(BOBG)
 	$(MAKE) -C ./libft
-	$(CC) $(CFLAGS) $(BOBG) ./libft/libft.a -o $(BONUS)
+	$(CC) $(CFLAGS) $(BOBG)	./libft/libft.a -o $(BONUS)
+
+bonus:$(BONUS)
 clean:
 	$(MAKE) -C ./libft fclean
 	$(RM) $(OBG) $(BOBG)

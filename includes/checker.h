@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 15:25:46 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 15:10:02 by abhimi           ###   ########.fr       */
+/*   Created: 2025/01/22 14:44:22 by abhimi            #+#    #+#             */
+/*   Updated: 2025/01/22 15:07:35 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef CHECKER_H
+# define CHECKER_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
+# include "push_swap.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-
-char	*get_next_line(int fd);
-char	*ft_get_line(char *str);
-char	*ft_add(char *p);
-char	*read_sv(int fd, char *s);
-/* char	*ft_strchr(char *s, int c);
-char	*ft_strdup(char *s1);*/
-char	*ft_gstrjoin(char *s1, char *s2);
- // size_t	ft_strlen(char *s);
+# include "../bonus/get_next_line.h"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 10:55:58 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 13:52:38 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/22 15:10:21 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_strdup(char *s1)
 	return (p);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gstrjoin(char *s1, char *s2)
 {
 	char		*p;
 	size_t		i;

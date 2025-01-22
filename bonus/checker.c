@@ -6,20 +6,20 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:36:31 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 11:34:37 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/22 15:15:52 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-void    ft_del(t_stack *a, t_stack *b, char *str)
+static  void    ft_del(t_stack *a, t_stack *b, char *str)
 {
     free(str);
-    ft_free_stack;
+    ft_free_stack(a, b);
     ft_error("Error\n");
 }
 
-void    ft_command(char *str, t_stack *a, t_stack *b)
+static  void    ft_command(char *str, t_stack *a, t_stack *b)
 {
     if (ft_strncmp(str,"sa\n", 3) == 0) ft_swap(a);
     else if (ft_strncmp(str, "sb\n", 3) == 0) ft_swap(b);
@@ -35,7 +35,7 @@ void    ft_command(char *str, t_stack *a, t_stack *b)
     else ft_del(a, b, str);
 }
 
-void    ft_read_move(t_stack *a, t_stack *b)
+static  void    ft_read_move(t_stack *a, t_stack *b)
 {
     char    *line;
     line = get_next_line(0);
@@ -58,7 +58,7 @@ int main(int argc, char **argv)
             return 1;
         stack_a = fill_stack_a(argc, argv);
         stack_b = fill_stack_b(stack_a);
-        ft_read_move(stack_a, stack_b);
+        ft_read_move(&stack_a, &stack_b);
         if(is_sorted(stack_a))
             ft_putstr_fd("OK\n", 1);
         else

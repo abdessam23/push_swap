@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 09:35:58 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 13:51:24 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/22 15:10:58 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*read_sv(int fd, char *s)
 		b[rbyt] = '\0';
 		if (rbyt == 0)
 			break ;
-		s = ft_strjoin(s, b);
+		s =	ft_gstrjoin(s, b);
 	}
 	free(b);
 	return (s);
