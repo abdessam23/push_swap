@@ -6,13 +6,13 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 10:55:58 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 15:10:21 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/22 16:32:02 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *s)
+size_t	ft_strlen(const	char *s)
 {
 	size_t	i;
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr(const	char *s, int c)
 {
 	int	i;
 
@@ -32,15 +32,15 @@ char	*ft_strchr(char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == c)
-			return (s + i);
+			return ((char*)s + i);
 		i++;
 	}
 	if (c == '\0')
-		return (s + i);
+		return ((char*)s + i);
 	return (NULL);
 }
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*p;
 	int		i;
