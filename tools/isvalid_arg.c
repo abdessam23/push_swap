@@ -71,6 +71,6 @@ int	ft_check_arg(int argc, char **argv)
 			return (ft_check_error(argc, tab, "Error\n"));
 		i++;
 	}
-	ft_freetab(tab);
+	ft_freetab(argc, tab);
 	return (1);
 }

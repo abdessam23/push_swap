@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
 
 void	sort_3(t_stack *a)
@@ -18,22 +17,26 @@ void	sort_3(t_stack *a)
 	if (a->c == 2)
 		if (a->stk[a->top] > a->stk[a->c - 1])
 			sa(a);
-	if (a->stk[a->top] > a->stk[a->top + 1] && a->stk[a->c - 1] > a->stk[a->top])
+	if (a->stk[a->top] > a->stk[a->top + 1] && a->stk[a->c
+			- 1] > a->stk[a->top])
 		sa(a);
-	else if (a->stk[a->top] > a->stk[a->top + 1] && a->stk[a->top + 1] > a->stk[a->c - 1])
+	else if (a->stk[a->top] > a->stk[a->top + 1] && a->stk[a->top
+			+ 1] > a->stk[a->c - 1])
 	{
 		sa(a);
 		rra(a);
 	}
-	else if (a->stk[a->top] > a->stk[a->c - 1] && a->stk[a->top + 1] < a->stk[a->c - 1])
+	else if (a->stk[a->top] > a->stk[a->c - 1] && a->stk[a->top
+			+ 1] < a->stk[a->c - 1])
 		ra(a);
-	else if (a->stk[a->top] < a->stk[a->c - 1] && a->stk[a->c - 1] < a->stk[a->top + 1])
+	else if (a->stk[a->top] < a->stk[a->c - 1] && a->stk[a->c
+			- 1] < a->stk[a->top + 1])
 	{
 		sa(a);
 		ra(a);
 	}
-	else if (a->stk[a->top + 1] > a->stk[a->top]
-		&& a->stk[a->top + 1] > a->stk[a->c - 1])
+	else if (a->stk[a->top + 1] > a->stk[a->top] && a->stk[a->top
+			+ 1] > a->stk[a->c - 1])
 		rra(a);
 }
 
@@ -41,8 +44,7 @@ void	sort_5(t_stack *a, t_stack *b)
 {
 	while (a->size > 3)
 	{
-		if (a->stk[a->top] == a->sort[0]
-			|| a->stk[a->top] == a->sort[1])
+		if (a->stk[a->top] == a->sort[0] || a->stk[a->top] == a->sort[1])
 			pb(a, b);
 		else
 			ra(a);
@@ -56,12 +58,12 @@ void	sort_5(t_stack *a, t_stack *b)
 		sa(a);
 }
 
-void    ft_small_sort(t_stack *a, t_stack *b)
+void	ft_small_sort(t_stack *a, t_stack *b)
 {
-    if (a->c == 2)
-        sa(a);
-    if (a->c == 3)
-        sort_3(a);
-    else if (a->c > 3 && a->c <= 5)
-        sort_5(a, b);
+	if (a->c == 2)
+		sa(a);
+	if (a->c == 3)
+		sort_3(a);
+	else if (a->c > 3 && a->c <= 5)
+		sort_5(a, b);
 }

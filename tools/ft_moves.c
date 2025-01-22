@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
 void	ft_push(t_stack *to, t_stack *from)
 {
 	if (from->size == 0)

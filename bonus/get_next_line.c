@@ -83,7 +83,7 @@ char	*read_sv(int fd, char *s)
 		b[rbyt] = '\0';
 		if (rbyt == 0)
 			break ;
-		s =	ft_gstrjoin(s, b);
+		s = ft_gstrjoin(s, b);
 	}
 	free(b);
 	return (s);
