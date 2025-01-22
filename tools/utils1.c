@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:26:16 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/21 16:18:09 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/21 18:47:31 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,12 @@ int find_level(int n,int *sorted, int len)
         i++;
     }
     return (-1);
+}
+
+int ft_check_error(int ac, char **av, char *str)
+{
+    if (ac == 2)
+        ft_free(av);
+    ft_putstr_fd(str, 1);
+    return (0);
 }

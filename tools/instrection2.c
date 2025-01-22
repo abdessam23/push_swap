@@ -11,17 +11,15 @@ void    ft_push(t_stack *to, t_stack *from)
     from->size--;
 }
 
-void    pa(t_stack *a, t_stack *b, int msg)
+void    pa(t_stack *a, t_stack *b)
 {
     ft_push(a,b);
-    if(msg)
-        ft_putstr_fd("pa\n", 1);
+    ft_putstr_fd("pa\n", 1);
 }
-void    pb(t_stack *a, t_stack *b, int msg)
+void    pb(t_stack *a, t_stack *b)
 {
     ft_push(b,a);
-    if(msg)
-        ft_putstr_fd("pb\n", 1);
+    ft_putstr_fd("pb\n", 1);
 }
 
 void    ft_rev_rotate(t_stack *stack)
@@ -40,24 +38,21 @@ void    ft_rev_rotate(t_stack *stack)
     }
 }
 
-void    rra(t_stack *a, int msg)
+void    rra(t_stack *a)
 {
     ft_rev_rotate(a);
-    if(msg)
-        ft_putstr_fd("rra\n", 1);
+    ft_putstr_fd("rra\n", 1);
 }
 
-void    rrb(t_stack *b, int msg)
+void    rrb(t_stack *b)
 {
     ft_rev_rotate(b);
-    if(msg)
-        ft_putstr_fd("rrb\n", 1);
+    ft_putstr_fd("rrb\n", 1);
 }
 
-void    rrr(t_stack *a, t_stack *b, int msg)
+void    rrr(t_stack *a, t_stack *b)
 {
     ft_rev_rotate(a);
     ft_rev_rotate(b);
-    if(msg)
-        ft_putstr_fd("rrr\n", 1);
+    ft_putstr_fd("rrr\n", 1);
 }

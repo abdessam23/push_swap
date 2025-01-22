@@ -3,16 +3,16 @@ static void mid_top_to_a(t_stack *a, t_stack *b, int  num,int *level)
 {
     (*level)--;
     while (b->stk[b->top] != num)
-        rb(b, 1);
-    pa(a, b, 1);
+        rb(b);
+    pa(a, b);
 }
 
 static void mid_bot_to_a(t_stack *a, t_stack *b, int  num,int *level)
 {
     (*level)--;
     while (b->stk[b->top] != num)
-        rrb(b, 1);
-    pa(a, b, 1);
+        rrb(b);
+    pa(a, b);
 }
 
 void    ft_push_to_a(t_stack *a, t_stack *b)

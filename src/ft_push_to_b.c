@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:25:21 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/21 16:18:25 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/22 11:42:44 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ static void rotate_or_push(t_stack *a, t_stack *b, int num, int rotate_rb_flag)
     if (pos <= (a->size / 2 + a->top))
     {
         while (num != a->stk[a->top])
-            ra(a, 1);
+            ra(a);
     }
     else
     {
         while (num != a->stk[a->top])
-            rra(a, 1);
+            rra(a);
     }
 
-    pb(a, b, 1);
+    pb(a, b);
     
     if (rotate_rb_flag)
-        rb(b, 1);
+        rb(b);
 }
 
 static void rot_rb(t_stack *a, t_stack *b, int num)

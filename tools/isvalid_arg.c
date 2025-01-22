@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 10:21:19 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/21 18:29:39 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/22 09:29:30 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int   is_number(char *s)
     return (1);
 }
 
-void    ft_check_arg(int argc, char **argv)
+int    ft_check_arg(int argc, char **argv)
 {
     int i;
     char **tab;
@@ -59,20 +59,15 @@ void    ft_check_arg(int argc, char **argv)
     {
         n = ft_atol(tab[i]);
         if (n < -2147483648 || n > 2147483647)
-        {
-            ft_free(tab);
-            ft_error("Error\n");
-        }
+            return(ft_check_error(argc, tab,"Error\n"));
         if(!is_number(tab[i]))
-        {
-            ft_free(tab);
-            ft_error("Error\n");
-        }
+            return(ft_check_error(argc, tab,"Error\n"));
         if(check_duplicate(tab, n, i))
-            ft_error("Error\n");
+            return(ft_check_error(argc, tab,"Error\n"));
         i++;
     }
     if (argc == 2)
         ft_free(tab);
+    return (1);
 }
 

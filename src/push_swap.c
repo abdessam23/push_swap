@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 10:23:05 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/21 17:57:29 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/21 18:50:30 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int main(int argc, char **argv)
 
     if (argc >= 2)
     {
-        ft_check_arg(argc, argv);
+        if(!ft_check_arg(argc, argv))
+            return 1;
         stack_a = fill_stack_a(argc, argv);
         stack_b = fill_stack_b(stack_a);
         if(!is_sorted(stack_a))

@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:26:27 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/21 13:57:47 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/22 11:40:09 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,22 @@ void  ft_swap(t_stack *stack)
     }
 }
 
-void	sa(t_stack *a, int msg)
+void	sa(t_stack *a)
 {
     ft_swap(a);
-    if (msg)
-         ft_putstr_fd("sa\n", 1);
+    ft_putstr_fd("sa\n", 1);
 }
 
-void	sb(t_stack *b, int msg)
+void	sb(t_stack *b)
 {
     ft_swap(b);
-    if (msg)
-         ft_putstr_fd("sb\n", 1);
+    ft_putstr_fd("sb\n", 1);
 }
-void	ss(t_stack *a, t_stack *b, int msg)
+void	ss(t_stack *a, t_stack *b)
 {
     ft_swap(a);
     ft_swap(b);
-    if (!msg)
-         ft_putstr_fd("ss\n", 1);
+    ft_putstr_fd("ss\n", 1);
 }
 
 void    ft_rotate(t_stack *stack)
@@ -61,24 +58,21 @@ void    ft_rotate(t_stack *stack)
     }
 }
 
-void	ra(t_stack *a, int msg)
+void	ra(t_stack *a)
 {
     ft_rotate(a);
-    if (msg)
-         ft_putstr_fd("ra\n", 1);
+    ft_putstr_fd("ra\n", 1);
 }
 
-void	rb(t_stack *b, int msg)
+void	rb(t_stack *b)
 {
     ft_rotate(b);
-    if (msg)
-        ft_putstr_fd("rb\n", 1);
+    ft_putstr_fd("rb\n", 1);
 }
 
-void	rr(t_stack *a, t_stack *b, int msg)
+void	rr(t_stack *a, t_stack *b)
 {
     ft_rotate(a);
     ft_rotate(b);
-    if (msg)
-         ft_putstr_fd("rr\n", 1);
+    ft_putstr_fd("rr\n", 1);
 }
