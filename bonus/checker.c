@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:36:31 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 15:15:52 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/02/01 16:48:34 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ static void	ft_command(char *str, t_stack *a, t_stack *b)
 		ft_push(a, b);
 	else if (ft_strncmp(str, "pb\n", 3) == 0)
 		ft_push(b, a);
+	else if (ft_strncmp(str, "rr\n", 3) == 0)
+		rr_1(b, a);
+	else if (ft_strncmp(str, "rrr\n", 3) == 0)
+		rrr_1(b, a);
+	else if (ft_strncmp(str, "ss\n", 3) == 0)
+		ss_1(b, a);
 	else
 		ft_del(a, b, str);
 }
@@ -58,20 +64,22 @@ int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
+	char	**str;
 
-	if (argc >= 2)
+	str = args_check(argc, argv);
+	stack_a = fill_stack_a(str);
+	if (check_duplicate(stack_a.stk, stack_a.size) == 1)
 	{
-		if (!ft_check_arg(argc, argv))
-			return (1);
-		stack_a = fill_stack_a(argc, argv);
-		stack_b = fill_stack_b(stack_a);
-		ft_read_move(&stack_a, &stack_b);
-		if (is_sorted(stack_a))
-			ft_putstr_fd("OK\n", 1);
-		else
-			ft_putstr_fd("KO\n", 1);
-		ft_free_stack(&stack_a, &stack_b);
-		return (0);
+		free(stack_a.stk);
+		free(stack_a.sort);
+		ft_error("Error\n");
 	}
-	return (1);
+	stack_b = fill_stack_b(stack_a);
+	ft_read_move(&stack_a, &stack_b);
+	if (stack_b.size == 0 && is_sorted(stack_a))
+		ft_putstr_fd("OK\n", 1);
+	else
+		ft_putstr_fd("KO\n", 1);
+	ft_free_stack(&stack_a, &stack_b);
+	return (0);
 }

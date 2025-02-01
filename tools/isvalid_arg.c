@@ -6,71 +6,101 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 10:21:19 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 18:49:49 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/02/01 17:35:27 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	check_duplicate(char **str, int n, int i)
+void	ft_error(char *str)
 {
-	i++;
-	while (str[i])
-	{
-		if (ft_atoi(str[i]) == n)
-			return (1);
-		i++;
-	}
-	return (0);
+	ft_putstr_fd(str, 2);
+	exit (1);
 }
 
-static int	is_number(char *s)
+void	check_args(char **av)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	if (s[i] == '-')
-		i++;
-	while (s[i])
+	while (av[i])
 	{
-		if (!ft_isdigit(s[i]))
-			return (0);
+		j = 0;
+		while (av[i][j] == ' ')
+			j++;
+		if (av[i][j] == '\0')
+			ft_error("Error\n");
 		i++;
 	}
-	return (1);
 }
 
-static void	ft_freetab(int argc, char **tab)
+char	**args_check(int ac, char **av)
 {
-	if (argc == 2)
-		ft_free(tab);
+	char	**args;
+
+	if (ac == 1)
+		exit(1);
+	check_args(av);
+	arg_check_int(av);
+	args = args_combinor(av);
+	if (!args)
+		exit(1);
+	if (!args[0])
+	{
+		ft_free(args);
+		exit(1);
+	}
+	return (args);
 }
 
-int	ft_check_arg(int argc, char **argv)
+void	arg_check_int(char **av)
 {
-	int			i;
-	char		**tab;
-	long long	n;
+	int	i;
+	int	j;
 
-	i = 0;
-	if (argc == 2)
-		tab = ft_split(argv[1], ' ');
-	else
+	i = 1;
+	j = 0;
+	while (av[i])
 	{
-		i = 1;
-		tab = argv;
-	}
-	while (tab[i])
-	{
-		n = ft_atol(tab[i]);
-		if (n < -2147483648 || n > 2147483647)
-			return (ft_check_error(argc, tab, "Error\n"));
-		if (!is_number(tab[i]))
-			return (ft_check_error(argc, tab, "Error\n"));
-		if (check_duplicate(tab, n, i))
-			return (ft_check_error(argc, tab, "Error\n"));
+		while (av[i][j])
+		{
+			if ((av[i][j] < '0' || av[i][j] > '9')
+					&& (av[i][j] != ' ' && av[i][j] != '-' && av[i][j] != '+'))
+			{
+				ft_error("Error\n");
+			}
+			j++;
+		}
+		j = 0;
 		i++;
 	}
-	ft_freetab(argc, tab);
-	return (1);
+}
+
+char	**args_combinor(char **av)
+{
+	char	*tmp1;
+	char	*tmp2;
+	int		i;
+	char	**args;
+
+	i = 2;
+	tmp1 = ft_strjoin(av[1], " ");
+	if (!tmp1)
+		return (NULL);
+	while (av[i])
+	{
+		tmp2 = ft_strjoin(tmp1, av[i]);
+		free(tmp1);
+		if (!tmp2)
+			return (NULL);
+		tmp1 = ft_strjoin(tmp2, " ");
+		free(tmp2);
+		if (!tmp1)
+			return (NULL);
+		i++;
+	}
+	args = ft_split(tmp1, ' ');
+	free(tmp1);
+	return (args);
 }

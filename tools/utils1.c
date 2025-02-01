@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:26:16 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 18:26:13 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/25 17:26:01 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ int	find_level(int n, int *sorted, int len)
 	int	i;
 
 	i = 0;
-	while (i <= len)
+	while (i < len)
 	{
 		if (n == sorted[i])
-			return (i + 1);
+			return (i);
 		i++;
 	}
 	return (-1);

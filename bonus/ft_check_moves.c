@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   ft_check_moves.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 14:44:22 by abhimi            #+#    #+#             */
-/*   Updated: 2025/02/01 16:03:51 by abhimi           ###   ########.fr       */
+/*   Created: 2025/01/26 16:32:55 by abhimi            #+#    #+#             */
+/*   Updated: 2025/01/26 18:13:02 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "push_swap.h"
 
-# include "push_swap.h"
+void	rr_1(t_stack *a, t_stack *b)
+{
+	ft_rotate(a);
+	ft_rotate(b);
+}
 
-# include "../bonus/get_next_line.h"
+void	rrr_1(t_stack *a, t_stack *b)
+{
+	ft_rev_rotate(a);
+	ft_rev_rotate(b);
+}
 
-void	rr_1(t_stack *a, t_stack *b);
-void	rrr_1(t_stack *a, t_stack *b);
-void	ss_1(t_stack *a, t_stack *b);
-
-#endif
+void	ss_1(t_stack *a, t_stack *b)
+{
+	ft_swap(a);
+	ft_swap(b);
+}

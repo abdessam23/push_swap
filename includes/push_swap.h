@@ -6,20 +6,20 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:25:34 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 17:23:29 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/02/01 16:46:26 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/libft.h"
 # include <limits.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include "../libft/libft.h"
 
 typedef struct stack
 {
@@ -28,12 +28,15 @@ typedef struct stack
 	int				c;
 	int				*stk;
 	int				*sort;
-	struct stack	*next;
 }					t_stack;
 
 // Check args ....
-int					ft_check_arg(int argc, char **argv);
-long				ft_atol(char *str);
+void				check_args(char **av);
+char				**args_check(int ac, char **av);
+void				arg_check_int(char **av);
+char				**args_combinor(char **av);
+void				arg_check_int(char **av);
+int					check_duplicate(int *str, int size);
 
 // Utils ....
 void				ft_free(char **str);
@@ -49,8 +52,8 @@ int					ft_check_error(int ac, char **av, char *str);
 
 int					*ft_cpystk(t_stack *a);
 t_stack				fill_stack_b(t_stack a);
-t_stack				fill_stack_a(int argc, char **argv);
-
+t_stack				fill_stack_a(char **argv);
+int					ft_atol(char *str, char **args, t_stack *a);
 // Sorting ....
 
 void				ft_push_to_a(t_stack *a, t_stack *b);

@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 09:35:58 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 15:48:11 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/29 17:08:32 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	ln = ft_get_line(b);
 	b = ft_add(b);
+	if (b && b[0] == '\0')
+	{
+		free(b);
+		b = NULL;
+	}
 	return (ln);
 }

@@ -6,7 +6,7 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:25:21 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 11:42:44 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:23:54 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_push_to_a(t_stack *a, t_stack *b)
 	int	len;
 	int	level;
 
-	level = a->c;
+	level = a->c - 1;
 	while (b->size > 0)
 	{
 		up = b->top;

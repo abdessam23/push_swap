@@ -6,17 +6,11 @@
 /*   By: abhimi <abhimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:25:58 by abhimi            #+#    #+#             */
-/*   Updated: 2025/01/22 18:31:26 by abhimi           ###   ########.fr       */
+/*   Updated: 2025/02/01 16:43:55 by abhimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_error(char *str)
-{
-	ft_putstr_fd(str, 1);
-	exit (1);
-}
 
 void	ft_free(char **str)
 {
@@ -31,14 +25,14 @@ void	ft_free(char **str)
 	free(str);
 }
 
-int	is_sorted(t_stack stack_a)
+int	is_sorted(t_stack a)
 {
 	int	i;
 
-	i = stack_a.top;
-	while (i < stack_a.c - 1)
+	i = 0;
+	while (i < a.c - 1)
 	{
-		if (stack_a.stk[i] > stack_a.stk[i + 1])
+		if (a.stk[i] > a.stk[i + 1])
 			return (0);
 		i++;
 	}
@@ -52,27 +46,38 @@ void	ft_free_stack(t_stack *stack_a, t_stack *stack_b)
 	free(stack_a->sort);
 }
 
-long	ft_atol(char *str)
+void	wrong_number(char **args, t_stack *a)
 {
-	int			sign;
-	long long	r;
+	ft_free(args);
+	free(a->stk);
+	ft_error("Error\n");
+}
 
-	r = 0;
+int	ft_atol(char *str, char **args, t_stack *a)
+{
+	int		i;
+	int		sign;
+	long	num;
+
+	num = 0;
 	sign = 1;
-	while ((*str >= 9 && *str <= 13) || *str == ' ')
-		str++;
-	if (*str == '+' || *str == '-')
+	i = 0;
+	if (str[0] == '-' || str[0] == '+')
 	{
-		if (*str == '-')
+		if (str[0] == '-')
 			sign = -1;
-		str++;
+		i++;
+		if (str[i] < '0' || str[i] > '9')
+			wrong_number(args, a);
 	}
-	while (*str >= '0' && *str <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		r *= 10;
-		r += *str - '0';
-		str++;
+		num = num * 10 + (str[i] - '0');
+		i++;
+		if (sign * num < INT_MIN || sign * num > INT_MAX)
+			wrong_number(args, a);
 	}
-	r *= sign;
-	return ((long)r);
+	if (str[i] != '\0')
+		wrong_number(args, a);
+	return (num * sign);
 }
