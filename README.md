@@ -1,3 +1,6 @@
+Sorting Algorithm Description for Push_Swap
+
+
 
 The push_swap algorithm sorts a stack of integers using a minimal number of operations by dividing the problem into smaller chunks and handling small stacks separately.
 
